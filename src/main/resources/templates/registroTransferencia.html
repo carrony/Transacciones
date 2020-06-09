@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+	<header>
+		<h1 th:text="#{tituloCabecera}"></h1>
+	</header>
+
+	<main>
+		<h2 th:text="#{mensaje_registro}"></h2>
+		
+		<div class="error" th:if="error!=null" th:text="${error}"></div>
+		<form th:action="@{/transferir}" method="post" th:object="${transferencia}">
+			<div>
+				<label for="emisor" th:text="#{cuenta_origen}"></label><br>
+				<select th:field="*{emisor}" id="emisor">
+				  <option th:each="cuenta : ${listaCuentas}" 
+				          th:value="${cuenta.movil}" 
+				          th:text="${cuenta.nombre +' '+ cuenta.apellidos+ ' ('+cuenta.movil +')'}"></option>
+				</select>
+				<div class="error" id="emisor" th:if="${#fields.hasErrors('emisor')}"  th:errors="*{emisor}"></div>
+			</div>
+			<div>
+				<label for="cantidad" th:text="#{cantidad}"></label><br>
+				<input type="text" th:field="*{cantidad}" id="cantidad">
+				<div class="error" id="cantidad" th:if="${#fields.hasErrors('cantidad')}"  th:errors="*{cantidad}"></div>
+			</div>
+			<div>
+				<label for="concepto" th:text="#{concepto}"></label><br>
+				<input type="text" th:field="*{concepto}" id="concepto">			
+				<div class="error" id="concepto" th:if="${#fields.hasErrors('concepto')}"  th:errors="*{concepto}">	</div>
+			</div>
+			<div>
+				<label for="receptor" th:text="#{cuenta_destino}"></label><br>
+				<select th:field="*{receptor}" id="movil">
+				  <option th:each="cuenta : ${listaCuentas}" 
+				          th:value="${cuenta.movil}" 
+				          th:text="${cuenta.nombre +' '+ cuenta.apellidos+ ' ('+cuenta.movil +')'}"></option>
+				</select>
+				<div class="error" id="receptor" th:if="${#fields.hasErrors('receptor')}"  th:errors="*{receptor}"></div>
+			</div>
+			<input type="submit" value="Añadir" class="boton"/>
+		</form>
+		<a th:href="@{/}">Volver al Inicio</a>
+	</main>
+
+	<footer>
+		<h4 th:text="#{tituloCabecera}"> </h4>
+	</footer>
+</body>
+</html>

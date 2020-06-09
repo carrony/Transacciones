@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{tituloCabecera}"></title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/estilos.css}">
+<script src="https://kit.fontawesome.com/780b91c08b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<header>
+		<h1 th:text="#{tituloCabecera}"></h1>
+	</header>
+	<main>
+		<h2 th:text="#{mensaje_listado}"></h2>
+		<table th:if="${!listaCuentas.isEmpty()}" class="tabla-datos">
+			<thead>
+				<tr>
+					<th th:text="#{movil}"></th>
+					<th th:text="#{nombre}"></th>
+					<th th:text="#{apellidos}"></th>
+					<th th:text="#{saldo}"></th>
+					<th th:text="#{acciones}"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cuenta: ${listaCuentas}">
+					<td th:text="${cuenta.movil}"></td>
+					<td th:text="${cuenta.nombre}"></td>
+					<td th:text="${cuenta.apellidos}"></td>
+					<td th:text="${cuenta.saldo}"></td>
+					<td><a th:href="@{/editarCuenta(movil=${cuenta.movil})}" class="boton_accion"><i class="fas fa-edit"></i></a>
+					    <a th:href="@{/eliminarCuenta(movil=${cuenta.movil})}" class="boton_accion"><i class="fas fa-times"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<h3 th:if="${listaCuentas.isEmpty()}" th:text="#{noHayCuentas}"></h3>
+		<br>
+		<a th:href="@{/}">Volver al Inicio</a>
+	</main>
+
+	<footer>
+		<h4 th:text="#{tituloCabecera}"> </h2>
+	</footer>
+</body>
+</html>

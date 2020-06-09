@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{tituloCabecera}"></title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+	<header>
+		<h1 th:text="#{tituloCabecera}"></h1>
+	</header>
+	
+	<h1 th:text="${mensaje_index}"></h1>
+	<ul>
+		<li><a th:href="@{/registrarCuenta}">Registrar una nueva cuenta</a><br></li>
+		<li><a th:href="@{/mostrar_cuentas}">Listado de Cuentas</a></li>
+		<li><a th:href="@{/transferir}">Hacer Transferencia</a></li>
+	</ul>
+	
+	
+	
+	<footer>
+		<h4 th:text="#{tituloCabecera}"> </h4>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+	<header>
+		<h1 th:text="#{tituloCabecera}"></h1>
+	</header>
+
+	<main>
+		<h2 th:text="#{mensaje_registro}"></h2>
+		<form th:action="@{/resumenCuenta}" method="post" th:object="${cuenta}">
+			<div>
+				<label for="movil" th:text="#{movil}"></label><br>
+				<input type="text" th:field="*{movil}" id="movil">
+				<div class="error" id="movil" th:if="${#fields.hasErrors('movil')}"  th:errors="*{movil}"></div>
+			</div>
+			<div>
+				<label for="nombre" th:text="#{nombre}"></label><br>
+				<input type="text" th:field="*{nombre}" id="nombre">
+				<div class="error" id="nombre" th:if="${#fields.hasErrors('nombre')}"  th:errors="*{nombre}"></div>
+			</div>
+			
+			<div>
+				<label for="apellidos" th:text="#{apellidos}"></label><br>
+				<input type="text" th:field="*{apellidos}" id="apellidos">			
+				<div class="error" id="nombre" th:if="${#fields.hasErrors('apellidos')}"  th:errors="*{apellidos}">	</div>
+			</div>
+			<div>
+				<label for="saldo" th:text="#{saldo}"></label><br>
+				<input type="text" th:field="*{saldo}" id="saldo">
+				<div class="error" id="saldo" th:if="${#fields.hasErrors('saldo')}"  th:errors="*{saldo}">	</div>
+			</div>
+			<input type="submit" value="Añadir" class="boton"/>
+		</form>
+		<a th:href="@{/}">Volver al Inicio</a>
+	</main>
+
+	<footer>
+		<h4 th:text="#{tituloCabecera}"> </h4>
+	</footer>
+</body>
+</html>
